@@ -1,76 +1,180 @@
+/* ===== GENERAL BODY ===== */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f8;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(
+        135deg, 
+        #008080 0%,    /* Teal */
+        #20b2aa 50%,   /* Light Sea Green */
+        #40e0d0 100%   /* Turquoise */
+    );
     margin: 0;
     padding: 0;
+    color: #333333;
+    min-height: 100vh;
 }
 
+/* ===== CONTAINER ===== */
 .container {
-    max-width: 700px;
-    margin: 30px auto;
-    background: #fff;
-    padding: 25px 40px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    max-width: 750px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background-color: #87ceeb; /* Sky Blue main container */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    border-radius: 20px;
 }
 
-h1, h2 {
+/* ===== HEADINGS ===== */
+h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #333333;
+    margin-bottom: 35px;
+    font-size: 32px;
+    font-weight: 600;
 }
 
-form {
+/* ===== QUESTION SECTION ===== */
+.question-section {
+    background-color: #b0e0e6; /* Lighter sky blue */
+    border-radius: 15px;
+    padding: 20px;
     margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.question {
-    margin-bottom: 15px;
+.question-section:hover {
+    background-color: #5dade2; /* Darker version of sky blue */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-label {
-    font-weight: bold;
+/* ===== FORM LABELS ===== */
+form label {
     display: block;
-    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 17px;
+    color: #333;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+form label:hover {
+    background-color: #5dade2; /* Darker sky blue on hover */
 }
 
-input[type="radio"] {
-    margin-right: 5px;
+/* ===== MODERN RADIO BUTTONS ===== */
+form input[type="radio"] {
+    display: none;
 }
 
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 20px;
+form label.radio-label {
+    position: relative;
+    padding: 12px 25px;
+    margin-right: 15px;
+    display: inline-block;
     font-size: 16px;
-    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-.result {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #dff0d8;
-    border: 1px solid #3c763d;
-    color: #3c763d;
-    border-radius: 5px;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    transition: all 0.3s ease;
+    user-select: none;
     text-align: center;
+    background-color: #b0e0e6; /* Light sky blue */
+}
+
+form label.radio-label:hover {
+    background-color: #5dade2; /* Darker sky blue */
+}
+
+form input[type="radio"]:checked + .radio-label.yes {
+    background-color: #1e90ff; /* Dodger Blue for Yes */
+    color: white;
+    border-color: #1e90ff;
+}
+
+form input[type="radio"]:checked + .radio-label.no {
+    background-color: #104e8b; /* Darker Blue for No */
+    color: white;
+    border-color: #104e8b;
+}
+
+form label.radio-label:active {
+    transform: scale(0.95);
+}
+
+/* ===== INPUT FIELDS ===== */
+form input[type="number"],
+form input[type="text"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+form input[type="number"]:focus,
+form input[type="text"]:focus,
+form select:focus {
+    background-color: #b0e0e6;
+    outline: none;
+}
+
+/* ===== RESULT STYLING ===== */
+.prediction {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    margin: 25px 0;
+    color: #1e90ff; /* Dodger Blue */
+}
+
+.explanation {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 14px 30px;
     font-size: 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    border: none;
+    background-color: #1e90ff; /* Dodger Blue */
+    color: white;
+}
+
+.btn:hover {
+    background-color: #104e8b; /* Darker Dodger Blue hover */
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    form label.radio-label {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
 }
