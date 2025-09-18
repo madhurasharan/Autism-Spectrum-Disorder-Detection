@@ -1,42 +1,57 @@
 /* Bootstrap CDN will be added to templates */
 
+/* ===== COLOR PALETTE VARIABLES ===== */
+:root {
+    --background: #FAF3E0;
+    --primary-accent: #6D6875;
+    --secondary-accent: #FF6B6B;
+    --warm-accent: #4ECDC4;
+    --text-primary: #2C2C2C;
+    --text-headings: #1D3557;
+}
+
 /* ===== GENERAL BODY ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(
-        135deg,
-        #008080 0%,    /* Teal */
-        #20b2aa 50%,   /* Light Sea Green */
-        #40e0d0 100%   /* Turquoise */
-    );
+    background: var(--background);
     margin: 0;
     padding: 0;
-    color: #333333;
+    color: var(--text-primary);
     min-height: 100vh;
 }
 
 /* ===== NAVIGATION ===== */
 .navbar {
-    background-color: #008080 !important;
+    background-color: var(--primary-accent) !important;
 }
 .navbar-brand, .nav-link {
     color: white !important;
 }
 .navbar-brand:hover, .nav-link:hover {
-    color: #40e0d0 !important;
+    color: var(--secondary-accent) !important;
 }
 
 /* ===== FOOTER ===== */
 .footer {
-    background-color: #008080;
-    color: white;
+    background-color: #6D6875;
+    color: black; /* Changed footer text color to black */
     text-align: center;
     padding: 8px 10px;
     position: relative;
     bottom: auto;
     width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 10px 10px 0 0;
+}
+
+/* ===== CUSTOM CLASSES ===== */
+.bg-primary-accent {
+    background-color: var(--primary-accent) !important;
+}
+
+.bg-footer {
+    background-color: #6D6875 !important;
+    color: black !important;
 }
 
 /* ===== CONTAINER ===== */
@@ -44,15 +59,17 @@ body {
     max-width: 750px;
     margin: 50px auto;
     padding: 40px 30px;
-    background-color: #87ceeb; /* Sky Blue main container */
+    background-color: #FFFFFF;
     box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     border-radius: 20px;
 }
 
 /* ===== HEADINGS ===== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-headings);
+}
 h1 {
     text-align: center;
-    color: #333333;
     margin-bottom: 35px;
     font-size: 32px;
     font-weight: 600;
@@ -60,18 +77,34 @@ h1 {
 
 /* ===== QUESTION SECTION ===== */
 .question-section {
-    background-color: #b0e0e6; /* Lighter sky blue */
+    background-color: #FAF3E0; /* cream */
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    color: #6D6875;
 }
 
 .question-section:hover {
-    background-color: #5dade2; /* Darker version of sky blue */
+    background-color: #FAF3E0; /* cream on hover */
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    color: #6D6875;
+}
+
+/* Buttons in questionnaire */
+.btn {
+    background-color: #6D6875;
+    color: #FAF3E0;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #FAF3E0;
+    color: #6D6875;
+    border: 1px solid #6D6875;
 }
 
 /* ===== FORM LABELS ===== */
@@ -79,15 +112,15 @@ form label {
     display: block;
     font-weight: 600;
     font-size: 17px;
-    color: #333;
+    color: var(--text-primary);
     margin-top: 15px;
     padding: 10px;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
+    /* Removed transition to disable hover color change */
 }
 
 form label:hover {
-    background-color: #5dade2; /* Darker sky blue on hover */
+    background-color: var(--secondary-accent);
 }
 
 /* ===== MODERN RADIO BUTTONS ===== */
@@ -107,23 +140,24 @@ form label.radio-label {
     transition: all 0.3s ease;
     user-select: none;
     text-align: center;
-    background-color: #b0e0e6; /* Light sky blue */
+    background-color: var(--secondary-accent);
+    color: white;
 }
 
 form label.radio-label:hover {
-    background-color: #5dade2; /* Darker sky blue */
+    background-color: var(--primary-accent);
 }
 
 form input[type="radio"]:checked + .radio-label.yes {
-    background-color: #1e90ff; /* Dodger Blue for Yes */
+    background-color: var(--primary-accent);
     color: white;
-    border-color: #1e90ff;
+    border-color: var(--primary-accent);
 }
 
 form input[type="radio"]:checked + .radio-label.no {
-    background-color: #104e8b; /* Darker Blue for No */
+    background-color: var(--secondary-accent);
     color: white;
-    border-color: #104e8b;
+    border-color: var(--secondary-accent);
 }
 
 form label.radio-label:active {
@@ -141,13 +175,13 @@ form select {
     border: 1px solid #ccc;
     font-size: 16px;
     background-color: #ffffff;
-    color: #333;
+    color: var(--text-primary);
 }
 
 form input[type="number"]:focus,
 form input[type="text"]:focus,
 form select:focus {
-    background-color: #b0e0e6;
+    background-color: var(--secondary-accent);
     outline: none;
 }
 
@@ -157,14 +191,14 @@ form select:focus {
     font-weight: bold;
     text-align: center;
     margin: 25px 0;
-    color: #1e90ff; /* Dodger Blue */
+    color: var(--warm-accent);
 }
 
 .explanation {
     font-size: 17px;
     text-align: center;
     margin-bottom: 25px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 /* ===== BUTTONS ===== */
@@ -176,15 +210,24 @@ form select:focus {
     cursor: pointer;
     display: inline-block;
     margin-top: 20px;
-    transition: all 0.3s ease;
+    /* Removed transition to disable hover effect */
     border: none;
-    background-color: #1e90ff; /* Dodger Blue */
+    background-color: var(--primary-accent);
     color: white;
 }
 
 .btn:hover {
-    background-color: #104e8b; /* Darker Dodger Blue hover */
-    transform: translateY(-2px);
+    background-color: var(--primary-accent);
+    transform: none;
+}
+
+/* ===== CONTRIBUTORS LIST GROUP ITEMS ===== */
+.list-group-item {
+    background-color: #FFFFFF;
+    border: 1.5px solid var(--primary-accent);
+    color: var(--text-primary);
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 /* ===== RESPONSIVE ===== */

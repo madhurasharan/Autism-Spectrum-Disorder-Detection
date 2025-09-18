@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-teal">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary-accent">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ url_for('home') }}">ASD Detection</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,11 @@
 
             <div class="question-section">
                 <label for="ethnicity">Ethnicity:</label>
-                <input type="text" name="ethnicity" required>
+                <select name="ethnicity" required>
+                    {% for option in ethnicity_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="question-section">
@@ -177,7 +181,11 @@
 
             <div class="question-section">
                 <label for="country">Country:</label>
-                <input type="text" name="country" required>
+                <select name="country" required>
+                    {% for option in country_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <button type="submit" class="btn">Submit</button>
@@ -185,7 +193,7 @@
         </form>
 </div>
 
-<footer class="footer bg-teal text-white py-3 fixed-bottom text-center">
+<footer class="footer bg-footer py-3 fixed-bottom text-center">
     <div class="container">
         <small>This is a screening tool, not a medical diagnosis. Please consult a healthcare professional.</small>
     </div>

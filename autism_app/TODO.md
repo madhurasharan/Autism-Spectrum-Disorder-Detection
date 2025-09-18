@@ -1,30 +1,17 @@
-# TODO List for Flask Website Build
+# TODO: Fix Website Theme and Layout
 
-## Step 1: Update Dependencies
-- [x] Add reportlab to requirements.txt for PDF generation
+## Completed Tasks
+- [x] Analyze current theme and layout
+- [x] Gather information from templates and CSS
+- [x] Create comprehensive plan
+- [x] Get user approval
+- [x] Update styles.css for global theme consistency
+- [x] Update index.html (Dashboard) navbar/footer classes and add styles.css link
+- [x] Update result.html to include navbar, footer, Bootstrap, and styles.css
+- [x] Update contributors.html to add styles.css link and replace inline styles
+- [x] Update about.html to add styles.css link and replace inline styles
 
-## Step 2: Update Styling
-- [x] Integrate Bootstrap into styles.css via CDN
-- [x] Update CSS for navigation bar, footer, and responsive design
-
-## Step 3: Update Flask App (app.py)
-- [ ] Add routes for /about and /contributors
-- [ ] Update predict route to generate chart image with matplotlib
-- [ ] Add probability/confidence to prediction
-- [ ] Implement PDF download functionality
-- [ ] Add navigation context to all routes
-
-## Step 4: Create New Templates
-- [ ] Create about.html with ASD info, early detection, methodology
-- [ ] Create contributors.html with team members and guide
-
-## Step 5: Update Existing Templates
-- [ ] Update index.html to dashboard with title, intro, navigation, footer
-- [ ] Update questionnaire.html with navigation and footer
-- [ ] Update result.html with navigation, probability, chart, disclaimer, PDF button
-
-## Step 6: Testing and Verification
-- [ ] Install new dependencies
-- [ ] Run Flask app locally
-- [ ] Test all routes and functionality
-- [ ] Verify model predictions, chart generation, PDF download
+## Pending Tasks
+- [ ] Test the Flask app for theme consistency
+- [ ] Verify nav bar and footer on all pages
+- [ ] Check responsiveness and color uniformity

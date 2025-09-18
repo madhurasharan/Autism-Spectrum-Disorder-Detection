@@ -1,6 +1,8 @@
 import joblib
 from flask import Flask, request, render_template, send_file, url_for
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use non-GUI backend to avoid GUI warning
 import matplotlib.pyplot as plt
 import os
 from reportlab.pdfgen import canvas
@@ -25,13 +27,17 @@ dict_country = {
     'Iran': 16, 'Russia': 17
 }
 
+# Extract options for dropdowns
+ethnicity_options = list(dict_ethnicity.keys())
+country_options = list(dict_country.keys())
+
 @app.route('/')
 def home():
     return render_template('index.html', nav=True)
 
 @app.route('/questionnaire')
 def questionnaire():
-    return render_template('questionnaire.html', nav=True)
+    return render_template('questionnaire.html', nav=True, ethnicity_options=ethnicity_options, country_options=country_options)
 
 @app.route('/about')
 def about():
@@ -51,7 +57,7 @@ def predict():
         a_scores = [int(request.form[f'A{i}_Score']) for i in range(1, 11)]
         age = int(request.form['age'])
         ethnicity = request.form['ethnicity']
-        jaundice = 1 if request.form.get('jundice') == 'yes' else 0
+        jaundice = 1 if request.form.get('jaundice') == 'yes' else 0
         austim = 1 if request.form['austim'] == 'yes' else 0
         country = request.form['country']
         result = sum(a_scores)
