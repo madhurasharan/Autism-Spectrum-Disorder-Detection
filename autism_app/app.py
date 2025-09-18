@@ -1,6 +1,10 @@
 import joblib
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_file, url_for
 import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 app = Flask(__name__)
 
@@ -23,11 +27,23 @@ dict_country = {
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', nav=True)
 
 @app.route('/questionnaire')
 def questionnaire():
-    return render_template('questionnaire.html')
+    return render_template('questionnaire.html', nav=True)
+
+@app.route('/about')
+def about():
+    return render_template('about.html', nav=True)
+
+@app.route('/contributors')
+def contributors():
+    return render_template('contributors.html', nav=True)
+
+@app.route('/download_pdf')
+def download_pdf():
+    return send_file('static/result.pdf', as_attachment=True)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -53,6 +69,10 @@ def predict():
         })
 
         prediction = model.predict(input_data)[0]
+        probabilities = model.predict_proba(input_data)[0]
+        prob_yes = probabilities[1] * 100  # Assuming YES is index 1
+        prob_no = probabilities[0] * 100
+
         if prediction == 'YES':
             result_text = "Likely to have Autism Spectrum Disorder"
         else:
@@ -60,10 +80,30 @@ def predict():
 
         explanation = "This prediction is based on behavioral and demographic data. Please consult a healthcare professional for an official diagnosis."
 
-        return render_template('result.html', prediction=result_text, explanation=explanation)
+        # Generate chart
+        chart_path = 'static/chart.png'
+        plt.figure(figsize=(6, 4))
+        plt.bar(['Unlikely', 'Likely'], [prob_no, prob_yes], color=['blue', 'red'])
+        plt.ylabel('Probability (%)')
+        plt.title('Prediction Probabilities')
+        plt.ylim(0, 100)
+        plt.savefig(os.path.join(app.root_path, chart_path))
+        plt.close()
+
+        # Generate PDF
+        pdf_path = 'static/result.pdf'
+        c = canvas.Canvas(os.path.join(app.root_path, pdf_path), pagesize=letter)
+        c.drawString(100, 750, "Autism Screening Result")
+        c.drawString(100, 730, f"Prediction: {result_text}")
+        c.drawString(100, 710, f"Probability Likely: {prob_yes:.2f}%")
+        c.drawString(100, 690, f"Probability Unlikely: {prob_no:.2f}%")
+        c.drawString(100, 670, explanation)
+        c.save()
+
+        return render_template('result.html', prediction=result_text, explanation=explanation, probability=f"{prob_yes:.2f}%", chart_path=chart_path, pdf_path=pdf_path)
 
     except Exception as e:
-        return render_template('result.html', prediction="Error: " + str(e), explanation="")
+        return render_template('result.html', prediction="Error: " + str(e), explanation="", probability=None, chart_path=None, pdf_path=None)
 
 if __name__ == '__main__':
     app.run(debug=True)

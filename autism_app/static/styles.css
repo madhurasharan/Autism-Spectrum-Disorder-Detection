@@ -1,8 +1,10 @@
+/* Bootstrap CDN will be added to templates */
+
 /* ===== GENERAL BODY ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(
-        135deg, 
+        135deg,
         #008080 0%,    /* Teal */
         #20b2aa 50%,   /* Light Sea Green */
         #40e0d0 100%   /* Turquoise */
@@ -11,6 +13,30 @@ body {
     padding: 0;
     color: #333333;
     min-height: 100vh;
+}
+
+/* ===== NAVIGATION ===== */
+.navbar {
+    background-color: #008080 !important;
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+.navbar-brand:hover, .nav-link:hover {
+    color: #40e0d0 !important;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background-color: #008080;
+    color: white;
+    text-align: center;
+    padding: 8px 10px;
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    font-size: 12px;
+    border-radius: 10px 10px 0 0;
 }
 
 /* ===== CONTAINER ===== */

@@ -10,6 +10,13 @@
         <h1>Prediction Result</h1>
         <p class="prediction">{{ prediction }}</p>
         <p class="explanation">{{ explanation }}</p>
+        {% if probability %}
+        <p><strong>Probability of ASD:</strong> {{ probability }}</p>
+        {% endif %}
+        {% if chart_path %}
+        <img src="{{ url_for('static', filename='chart.png') }}" alt="Prediction Chart" style="max-width: 100%; height: auto;">
+        {% endif %}
+        <a href="{{ url_for('download_pdf') }}" class="btn">Download Results as PDF</a>
         <a href="{{ url_for('home') }}" class="btn">Try Again</a>
     </div>
 </body>
