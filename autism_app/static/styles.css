@@ -1,19 +1,19 @@
-/* Bootstrap CDN will be added to templates */
-
 /* ===== COLOR PALETTE VARIABLES ===== */
 :root {
-    --background: #FAF3E0;
-    --primary-accent: #6D6875;
-    --secondary-accent: #FF6B6B;
-    --warm-accent: #4ECDC4;
+    --background-gradient: linear-gradient(135deg, #1d3557, #a8dadc); /* Dark Blue → Light Blue */
+    --cream: #FAF3E0; /* Cream */
+    --primary-accent: #1d3557; /* Dark blue */
+    --secondary-accent: #457b9d; /* Medium blue */
+    --blue-header-footer: #a8dadc; /* Light Blue for Navbar & Footer */
+    --teal-text: #008080; /* Teal for header & footer text */
     --text-primary: #2C2C2C;
-    --text-headings: #1D3557;
+    --text-headings: #1d3557;
 }
 
 /* ===== GENERAL BODY ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--background);
+    background: var(--background-gradient);
     margin: 0;
     padding: 0;
     color: var(--text-primary);
@@ -22,36 +22,29 @@ body {
 
 /* ===== NAVIGATION ===== */
 .navbar {
-    background-color: var(--primary-accent) !important;
+    background-color: var(--blue-header-footer) !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 .navbar-brand, .nav-link {
-    color: white !important;
+    color: var(--teal-text) !important;
+    font-weight: 600;
 }
 .navbar-brand:hover, .nav-link:hover {
-    color: var(--secondary-accent) !important;
+    color: var(--primary-accent) !important;
 }
 
 /* ===== FOOTER ===== */
 .footer {
-    background-color: #6D6875;
-    color: black; /* Changed footer text color to black */
+    background-color: var(--blue-header-footer);
+    color: var(--teal-text);
     text-align: center;
-    padding: 8px 10px;
-    position: relative;
-    bottom: auto;
+    padding: 15px 10px;
     width: 100%;
     font-size: 14px;
     border-radius: 10px 10px 0 0;
-}
-
-/* ===== CUSTOM CLASSES ===== */
-.bg-primary-accent {
-    background-color: var(--primary-accent) !important;
-}
-
-.bg-footer {
-    background-color: #6D6875 !important;
-    color: black !important;
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.15);
+    position: relative; /* Footer lower than fixed-bottom */
+    bottom: 0;
 }
 
 /* ===== CONTAINER ===== */
@@ -59,9 +52,17 @@ body {
     max-width: 750px;
     margin: 50px auto;
     padding: 40px 30px;
-    background-color: #FFFFFF;
+    background-color: var(--cream);
     box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for containers */
+.container:hover {
+    background-color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 }
 
 /* ===== HEADINGS ===== */
@@ -77,34 +78,18 @@ h1 {
 
 /* ===== QUESTION SECTION ===== */
 .question-section {
-    background-color: #FAF3E0; /* cream */
+    background-color: var(--cream);
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    color: #6D6875;
+    transition: all 0.3s ease;
+    color: var(--primary-accent);
 }
-
 .question-section:hover {
-    background-color: #FAF3E0; /* cream on hover */
+    background-color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    color: #6D6875;
-}
-
-/* Buttons in questionnaire */
-.btn {
-    background-color: #6D6875;
-    color: #FAF3E0;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #FAF3E0;
-    color: #6D6875;
-    border: 1px solid #6D6875;
 }
 
 /* ===== FORM LABELS ===== */
@@ -116,11 +101,12 @@ form label {
     margin-top: 15px;
     padding: 10px;
     border-radius: 8px;
-    /* Removed transition to disable hover color change */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
 form label:hover {
-    background-color: var(--secondary-accent);
+    background-color: var(--cream);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
 }
 
 /* ===== MODERN RADIO BUTTONS ===== */
@@ -130,36 +116,28 @@ form input[type="radio"] {
 
 form label.radio-label {
     position: relative;
-    padding: 12px 25px;
-    margin-right: 15px;
+    padding: 8px 18px;
+    margin-right: 10px;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 25px;
-    border: 2px solid #ccc;
+    border-radius: 20px;
+    border: 2px solid var(--primary-accent);
     transition: all 0.3s ease;
     user-select: none;
     text-align: center;
-    background-color: var(--secondary-accent);
-    color: white;
+    background-color: var(--cream);
+    color: var(--primary-accent);
 }
-
 form label.radio-label:hover {
-    background-color: var(--primary-accent);
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-
-form input[type="radio"]:checked + .radio-label.yes {
+form input[type="radio"]:checked + .radio-label {
     background-color: var(--primary-accent);
     color: white;
     border-color: var(--primary-accent);
 }
-
-form input[type="radio"]:checked + .radio-label.no {
-    background-color: var(--secondary-accent);
-    color: white;
-    border-color: var(--secondary-accent);
-}
-
 form label.radio-label:active {
     transform: scale(0.95);
 }
@@ -174,34 +152,22 @@ form select {
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 16px;
-    background-color: #ffffff;
+    background-color: var(--cream);
     color: var(--text-primary);
+    transition: all 0.3s ease;
 }
-
 form input[type="number"]:focus,
 form input[type="text"]:focus,
 form select:focus {
-    background-color: var(--secondary-accent);
+    background-color: #fff;
     outline: none;
-}
-
-/* ===== RESULT STYLING ===== */
-.prediction {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    margin: 25px 0;
-    color: var(--warm-accent);
-}
-
-.explanation {
-    font-size: 17px;
-    text-align: center;
-    margin-bottom: 25px;
-    color: var(--text-primary);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 8px rgba(29,53,87,0.4);
 }
 
 /* ===== BUTTONS ===== */
+
+/* Generic Button */
 .btn {
     padding: 14px 30px;
     font-size: 18px;
@@ -210,20 +176,72 @@ form select:focus {
     cursor: pointer;
     display: inline-block;
     margin-top: 20px;
-    /* Removed transition to disable hover effect */
     border: none;
-    background-color: var(--primary-accent);
-    color: white;
+    background-color: #f4a261; /* Warm orange */
+    color: #fff;
+    transition: all 0.3s ease;
 }
-
 .btn:hover {
-    background-color: var(--primary-accent);
-    transform: none;
+    background-color: #e76f51; /* Darker orange */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ===== CONTRIBUTORS LIST GROUP ITEMS ===== */
+/* Take Assessment Button */
+.btn-assessment {
+    padding: 14px 30px;
+    font-size: 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+    border: none;
+    background: linear-gradient(135deg, #56ab2f, #a8e6cf); /* Dark → Light green */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-assessment:hover {
+    background: linear-gradient(135deg, #a8e6cf, #56ab2f);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Yes / No Buttons */
+.btn-yes {
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    background: linear-gradient(135deg, #FFD700, #FFC300); /* Yellow gradient */
+    color: #333;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+.btn-yes:hover {
+    background: linear-gradient(135deg, #FFC300, #FFD700);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+.btn-no {
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    background: linear-gradient(135deg, #FF4C4C, #CC0000); /* Red gradient */
+    color: #fff;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+}
+.btn-no:hover {
+    background: linear-gradient(135deg, #CC0000, #FF4C4C);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* ===== CONTRIBUTORS LIST ===== */
 .list-group-item {
-    background-color: #FFFFFF;
+    background-color: var(--cream);
     border: 1.5px solid var(--primary-accent);
     color: var(--text-primary);
     border-radius: 10px;
@@ -236,13 +254,12 @@ form select:focus {
         margin: 20px;
         padding: 25px;
     }
-
     form label.radio-label {
         padding: 10px 20px;
         margin-bottom: 10px;
     }
-
-    .btn {
+    .btn,
+    .btn-assessment {
         font-size: 16px;
         padding: 12px 25px;
     }
