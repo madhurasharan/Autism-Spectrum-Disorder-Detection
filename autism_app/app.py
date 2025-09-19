@@ -11,7 +11,9 @@ from reportlab.lib.pagesizes import letter
 app = Flask(__name__)
 
 # Load the trained model
-model = joblib.load("stacking_model.pkl")
+import os
+model_path = os.path.join(os.path.dirname(__file__), "stacking_model.pkl")
+model = joblib.load(model_path)
 
 dict_ethnicity = {
     'White-European': 1, 'Asian': 2, 'Unknown': 3, 'Middle Eastern ': 4,
