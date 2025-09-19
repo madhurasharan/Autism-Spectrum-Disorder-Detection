@@ -114,4 +114,4 @@ def predict():
         return render_template('result.html', prediction="Error: " + str(e), explanation="", probability=None, chart_path=None, pdf_path=None)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
