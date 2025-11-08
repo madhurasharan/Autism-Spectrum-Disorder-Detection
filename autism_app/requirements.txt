@@ -10,3 +10,4 @@ scipy
 joblib
 flask
 reportlab
+gunicorn

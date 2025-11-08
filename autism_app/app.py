@@ -11,7 +11,6 @@ from reportlab.lib.pagesizes import letter
 app = Flask(__name__)
 
 # Load the trained model
-import os
 model_path = os.path.join(os.path.dirname(__file__), "stacking_model.pkl")
 model = joblib.load(model_path)
 
