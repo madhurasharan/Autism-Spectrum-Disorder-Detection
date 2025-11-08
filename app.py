@@ -94,12 +94,12 @@ def predict():
         plt.ylabel('Probability (%)')
         plt.title('Prediction Probabilities')
         plt.ylim(0, 100)
-        plt.savefig(os.path.join(app.root_path, chart_path))
+        plt.savefig(chart_path)
         plt.close()
 
         # Generate PDF
         pdf_path = 'static/result.pdf'
-        c = canvas.Canvas(os.path.join(app.root_path, pdf_path), pagesize=letter)
+        c = canvas.Canvas(pdf_path, pagesize=letter)
         c.drawString(100, 750, "Autism Screening Result")
         c.drawString(100, 730, f"Prediction: {result_text}")
         c.drawString(100, 710, f"Probability Likely: {prob_yes:.2f}%")
